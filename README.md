@@ -1,6 +1,7 @@
 # meme_generator
 
 A new Flutter project.
+![Alt text]
 
 
 ## Getting Started
