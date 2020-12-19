@@ -1,11 +1,6 @@
 # meme_generator
 
-A new Flutter project.
-![Alt text](https://user-images.githubusercontent.com/48949772/100516871-d4d81900-31ac-11eb-9fa2-e76400273a45.jpeg)
-![Alt text](https://user-images.githubusercontent.com/48949772/100516870-d43f8280-31ac-11eb-81eb-5617c311ecd1.jpeg)
-![Alt text](https://user-images.githubusercontent.com/48949772/100516869-d30e5580-31ac-11eb-90ba-4f0b4fa1b169.jpeg)
-![Alt text](https://user-images.githubusercontent.com/48949772/100516873-d4d81900-31ac-11eb-89c9-305f2fd9648e.jpeg)
-
+Meme Generator App in Flutter that allows access to local storage, modify image and store back to local storage.
 
 ## Getting Started
 
