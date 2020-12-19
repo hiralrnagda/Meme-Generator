@@ -9,7 +9,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -52,7 +52,8 @@ class _HomePageState extends State<HomePage> {
       } else {}
       _image = image;
     });
-    new Directory('meme').create(recursive: true);
+    new Directory('storage/emulated/0/' + 'MemeGenerator')
+        .create(recursive: true);
   }
 
   @override
@@ -63,6 +64,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black12,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -95,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                             height: 300,
                             fit: BoxFit.fitHeight,
                           )
-                        : Container(),
+                        : Container(child: Text('Please select an image'),),
                     Container(
                       height: 300,
                       width: MediaQuery.of(context).size.width,
@@ -107,10 +109,10 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.symmetric(vertical: 8),
                             child: Text(
                               headerText.toUpperCase(),
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w700),
+                              style: GoogleFonts.poppins(
+                                color: Colors.black,
+                                fontSize: 32,
+                                fontWeight: FontWeight.w700),
                             ),
                           ),
                           Spacer(),
@@ -120,10 +122,10 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 footerText.toUpperCase(),
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w700),
+                                style: GoogleFonts.poppins(
+                                color: Colors.black,
+                                fontSize: 32,
+                                fontWeight: FontWeight.w700),
                               )),
                         ],
                       ),
@@ -140,25 +142,27 @@ class _HomePageState extends State<HomePage> {
                       child: Column(
                         children: [
                           TextField(
+                            style: TextStyle(color:Colors.lightBlue),
                             onChanged: (val) {
                               setState(() {
                                 headerText = val;
                               });
                             },
                             decoration:
-                                InputDecoration(hintText: "Header Text"),
+                                InputDecoration(hintText: "Header Text",hintStyle:TextStyle(color:Colors.lime.shade100)),
                           ),
                           SizedBox(
                             height: 12,
                           ),
                           TextField(
+                            style: TextStyle(color:Colors.lightBlue),
                             onChanged: (val) {
                               setState(() {
                                 footerText = val;
                               });
                             },
                             decoration:
-                                InputDecoration(hintText: "Footer Text"),
+                                InputDecoration(hintText: "Footer Text",hintStyle:TextStyle(color:Colors.lime.shade100)),
                           ),
                           SizedBox(
                             height: 20,
@@ -177,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                       child: Center(
                         child: Text(
                           "Select image to get started",
-                          style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,backgroundColor: Colors.lime.shade100),),
+                          style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.lime.shade100),),
                         ),),
                 _imageFile != null ? Center(child: Image.file(_imageFile)) : Container(),
                   
