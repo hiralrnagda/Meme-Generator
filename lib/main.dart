@@ -12,6 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -43,6 +44,23 @@ class _HomePageState extends State<HomePage> {
     var image;
     try {
       image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    } catch (platformException) {
+      print("not allowing " + platformException);
+    }
+    setState(() {
+      if (image != null) {
+        imageSelected = true;
+      } else {}
+      _image = image;
+    });
+    new Directory('storage/emulated/0/' + 'MemeGenerator')
+        .create(recursive: true);
+  }
+  
+  Future getImage1() async {
+    var image;
+    try {
+      image = await ImagePicker.pickImage(source: ImageSource.camera);
     } catch (platformException) {
       print("not allowing " + platformException);
     }
@@ -189,11 +207,22 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add_a_photo),
-        onPressed: () {
-          getImage();
-        },
+      floatingActionButton: imageSelected ? null : Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          FloatingActionButton(
+            child: Icon(Icons.add_a_photo),
+            onPressed: () {
+              getImage();
+            },
+          ),
+          FloatingActionButton(
+            child: Icon(Icons.camera),
+            onPressed: () {
+              getImage1();
+            },
+          ),
+        ],
       ),
     );
   }
